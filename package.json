@@ -1,0 +1,15 @@
+{
+  "name": "hydroctl",
+  "version": "1.0.0",
+  "description": "Client service to read sensor values from Arduino.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Naive Roboticist",
+  "license": "MIT",
+  "dependencies": {
+    "robot-serial-iface": "^1.1.0",
+    "winston": "^2.2.0"
+  }
+}

@@ -1,0 +1,8 @@
+# VIM files
+*.swp
+
+# Node Junk
+node_modules
+
+# Ino build artifacts
+sketch/.build
