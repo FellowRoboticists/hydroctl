@@ -1,15 +1,25 @@
 #include "DHT.h"
+
+#define USE_PACKET 0
+
+#if USE_PACKET
+#include "Packet.h"
+#endif
+
 #define DEBUG 0
 
 // milliseconds of delay on the loop.
 #define DELAY 2000
 
 // Sensor output constants
+#if ! USE_PACKET
 #define START_BYTE 0x13
 
 #define ALT_SENSOR_PACKET_LENGTH 18
 uint8_t altSensorPacket [ALT_SENSOR_PACKET_LENGTH];
+#endif
 
+// Sensor identifier manifest constants
 #define LIGHT_SENSOR 0x01
 #define HUMIDITY_SENSOR_1 0x02
 #define HUMIDITY_SENSOR_2 0x03
@@ -22,8 +32,13 @@ uint8_t altSensorPacket [ALT_SENSOR_PACKET_LENGTH];
 #define LDR_PIN 0 // Analog pin 0
 #define DHTTYPE DHT11
 
+// Set up the temp/humidity sensors
 DHT dht1(DHT_1_PIN, DHTTYPE);
 DHT dht2(DHT_2_PIN, DHTTYPE);
+
+#if USE_PACKET
+Packet packet;
+#endif
 
 void setup()
 {
@@ -61,7 +76,19 @@ void loop()
 #endif
 
 #if ! DEBUG
+#if USE_PACKET
+  packet.reset();
+  packet.setSensorValue(HUMIDITY_SENSOR_1, h1);
+  packet.setSensorValue(HUMIDITY_SENSOR_2, h2);
+  packet.setSensorValue(TEMPERATURE_SENSOR_1, tf1);
+  packet.setSensorValue(TEMPERATURE_SENSOR_2, tf2);
+  packet.setSensorValue(LIGHT_SENSOR, l);
+  packet.completePacket();
+
+  Serial.write(packet.buffer(), packet.length());
+#else
   sendSensorValues(l, h1, tf1, h2, tf2);
+#endif
 #endif
 
   delay(DELAY);
@@ -72,6 +99,7 @@ float convertFromCtoF(float cValue) {
 }
 
 #if ! DEBUG
+#if ! USE_PACKET
 void sendSensorValues(
     uint16_t light, 
     uint16_t humidity1, 
@@ -106,5 +134,6 @@ void sendSensorValues(
 
   Serial.write(altSensorPacket, ALT_SENSOR_PACKET_LENGTH);
 }
+#endif
 #endif
 
