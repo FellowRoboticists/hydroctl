@@ -1,5 +1,6 @@
 #ifndef PACKET_H
 #define PACKET_H
+#include "Arduino.h"
 
 #define PACKET_LENGTH 18
 #define PACKET_LENGTH_POS 0x01
@@ -58,7 +59,7 @@ class Packet {
      *
      * @return pointer to the packet buffer
      */
-    const uint8_t *buffer();
+    const uint8_t *getBuffer();
 
   private:
     // Increments the current writing position of the packet buffer.

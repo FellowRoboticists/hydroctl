@@ -1,6 +1,6 @@
 #include "DHT.h"
 
-#define USE_PACKET 0
+#define USE_PACKET 1
 
 #if USE_PACKET
 #include "Packet.h"
@@ -85,7 +85,7 @@ void loop()
   packet.setSensorValue(LIGHT_SENSOR, l);
   packet.completePacket();
 
-  Serial.write(packet.buffer(), packet.length());
+  Serial.write(packet.getBuffer(), packet.length());
 #else
   sendSensorValues(l, h1, tf1, h2, tf2);
 #endif

@@ -34,7 +34,7 @@ uint16_t Packet::length() {
     + CHECKSUM_LENGTH;
 }
 
-const uint8_t *Package::buffer() {
+const uint8_t *Packet::getBuffer() {
   return buffer;
 }
 
