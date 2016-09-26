@@ -32,6 +32,13 @@ robot.on('temperature2', (t) => {
   winston.log('debug', 'Temperature 2 value %d', t)
 })
 
+robot.on('batch', (values) => {
+  winston.log('debug', 'All the sensor values: %j', values)
+})
+
+// Force the thing to emit in batch events.
+robot.emitBatch()
+
 // Get the robot started 
 robot.start(
   '/dev/ttyACM0',
