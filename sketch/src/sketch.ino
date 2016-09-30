@@ -9,7 +9,8 @@
 #define DEBUG 0
 
 // milliseconds of delay on the loop.
-#define DELAY 2000
+// Data collection is every 5 minutes
+#define DELAY 600000
 
 // Sensor output constants
 #if ! USE_PACKET

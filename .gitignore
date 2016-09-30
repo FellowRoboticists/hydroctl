@@ -6,3 +6,6 @@ node_modules
 
 # Ino build artifacts
 sketch/.build
+
+# Data files
+*.rrd
