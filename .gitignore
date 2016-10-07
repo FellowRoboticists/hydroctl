@@ -9,3 +9,9 @@ sketch/.build
 
 # Data files
 *.rrd
+
+# Misc
+graphit.sh
+*.png
+*.xml
+*.out

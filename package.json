@@ -9,6 +9,7 @@
   "author": "Naive Roboticist",
   "license": "MIT",
   "dependencies": {
+    "js-yaml": "^3.6.1",
     "robot-serial-iface": "^1.1.0",
     "rrdtools": "0.0.1",
     "winston": "^2.2.0"
