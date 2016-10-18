@@ -29,13 +29,13 @@ uint8_t altSensorPacket [ALT_SENSOR_PACKET_LENGTH];
 
 // Sensor settings
 #define DHT_1_PIN 2 // Digital pin 2
-#define DHT_2_PIN 3 // Digital pin 3
+// #define DHT_2_PIN 3 // Digital pin 3
 #define LDR_PIN 0 // Analog pin 0
 #define DHTTYPE DHT11
 
 // Set up the temp/humidity sensors
 DHT dht1(DHT_1_PIN, DHTTYPE);
-DHT dht2(DHT_2_PIN, DHTTYPE);
+// DHT dht2(DHT_2_PIN, DHTTYPE);
 
 #if USE_PACKET
 Packet packet;
@@ -46,7 +46,7 @@ void setup()
   Serial.begin(9600);
 
   dht1.begin();
-  dht2.begin();
+  // dht2.begin();
 }
 
 void loop()
@@ -55,8 +55,8 @@ void loop()
 
   float h1 = dht1.readHumidity();
   float t1 = dht1.readTemperature();
-  float h2 = dht2.readHumidity();
-  float t2 = dht2.readTemperature();
+  float h2 = 0; // dht2.readHumidity();
+  float t2 = 0; // dht2.readTemperature();
 
   float tf1 = convertFromCtoF(t1);
   float tf2 = convertFromCtoF(t2);
