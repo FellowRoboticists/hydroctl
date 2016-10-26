@@ -11,6 +11,7 @@ There are two primary pieces to this project:
 
 The idea here is for the Arduino to capture two sets of temp/humidity readings: inside and outside. It will also capture light intensity.
 
-Currently, the NodeJS daemon simply captures the serial readings and logs them. Eventually, the NodeJs daemon will create an RRD (round robin database) to capture the values.
+The retrofits have been made to incorporate rrdtools to capture the readings into an RRD 
+(round robin database). This provides a fixed-size database for the readings. 
 
 Onward and upward.
